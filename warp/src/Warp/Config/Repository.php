@@ -168,7 +168,7 @@ class Repository implements \ArrayAccess
      *
      * @return bool
      */
-    public function offsetExists($key)
+    public function offsetExists(mixed $key) : bool
     {
         return $this->has($key);
     }
@@ -180,7 +180,7 @@ class Repository implements \ArrayAccess
      *
      * @return bool
      */
-    public function offsetGet($key)
+    public function offsetGet(mixed $key) : mixed
     {
         return $this->get($key);
     }
@@ -191,7 +191,7 @@ class Repository implements \ArrayAccess
      * @param string $key
      * @param string $value
      */
-    public function offsetSet($key, $value)
+    public function offsetSet(mixed $key, mixed $value) : void
     {
         $this->set($key, $value);
     }
@@ -201,7 +201,7 @@ class Repository implements \ArrayAccess
      *
      * @param string $key
      */
-    public function offsetUnset($key)
+    public function offsetUnset(mixed $key) : void
     {
         $this->set($key, null);
     }

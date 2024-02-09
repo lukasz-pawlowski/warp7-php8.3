@@ -48,7 +48,7 @@ class Warp implements \ArrayAccess
      * @param string $id    The unique identifier for the parameter or object
      * @param mixed  $value The value of the parameter or a closure to defined an object
      */
-    public function offsetSet($id, $value)
+    public function offsetSet(mixed $id, mixed $value) : void
     {
         $this->values[$id] = $value;
     }
@@ -62,7 +62,7 @@ class Warp implements \ArrayAccess
      *
      * @throws InvalidArgumentException if the identifier is not defined
      */
-    public function offsetGet($id)
+    public function offsetGet(mixed $id) : mixed
     {
         if (!array_key_exists($id, $this->values)) {
             throw new \InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $id));
@@ -80,7 +80,7 @@ class Warp implements \ArrayAccess
      *
      * @return Boolean
      */
-    public function offsetExists($id)
+    public function offsetExists(mixed $id) : bool
     {
         return array_key_exists($id, $this->values);
     }
@@ -90,7 +90,7 @@ class Warp implements \ArrayAccess
      *
      * @param string $id The unique identifier for the parameter or object
      */
-    public function offsetUnset($id)
+    public function offsetUnset(mixed $id) : void
     {
         unset($this->values[$id]);
     }
