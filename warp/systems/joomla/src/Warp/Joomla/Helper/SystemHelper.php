@@ -10,6 +10,12 @@ namespace Warp\Joomla\Helper;
 
 use Warp\Warp;
 use Warp\Helper\AbstractHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Folder;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\File;
 
 /**
  * Joomla! system helper class, provides Joomla! CMS integration (http://www.joomla.org).
@@ -84,20 +90,20 @@ class SystemHelper extends AbstractHelper
         jimport('joomla.filesystem.folder');
 
         // init vars
-        $this->application = \JFactory::getApplication();
-        $this->document    = \JFactory::getDocument();
-        $this->language    = \JFactory::getLanguage();
+        $this->application = Factory::getApplication();
+        $this->document    = Factory::getDocument();
+        $this->language    = Factory::getLanguage();
         $this->path        = JPATH_ROOT;
-        $this->url         = rtrim(\JURI::root(false), '/');
+        $this->url         = rtrim(Uri::root(false), '/');
         $this->cache_path  = $this->path . '/media/template';
-        $this->cache_time  = max(\JFactory::getConfig()->get('cachetime') * 60, 86400);
+        $this->cache_time  = max(Factory::getConfig()->get('cachetime') * 60, 86400);
 
         // set config or load defaults
         $this['config']->load($this['path']->path('theme:config.json') ? : $this['path']->path('theme:config.default.json'));
 
         // set cache directory
         if (!file_exists($this->cache_path)) {
-            \JFolder::create($this->cache_path);
+            Folder::create($this->cache_path);
         }
     }
 
@@ -113,7 +119,7 @@ class SystemHelper extends AbstractHelper
             ->register($this->path . '/media/template', 'cache');
 
         // set theme support
-        \JFactory::getConfig()->set('widgetkit', true);
+        Factory::getConfig()->set('widgetkit', true);
 
         // set translations
         $this->language->load('tpl_warp', $this['path']->path('warp:systems/joomla'), null, true);
@@ -134,15 +140,15 @@ class SystemHelper extends AbstractHelper
         $app = $this->application;
 
         // get user
-        $user = \JFactory::getUser();
+        $user = Factory::getUser();
 
         // set config
         $this['config']['language']    = $this->document->language;
         $this['config']['direction']   = $this->document->direction;
-        $this['config']['site_url']    = rtrim(\JURI::root(), '/');
+        $this['config']['site_url']    = rtrim(Uri::root(), '/');
         $this['config']['site_name']   = $app->getCfg('sitename');
-        $this['config']['datetime']    = \JHTML::_('date', 'now', 'Y-m-d');
-        $this['config']['actual_date'] = \JHTML::_('date', 'now', \JText::_('DATE_FORMAT_LC'));
+        $this['config']['datetime']    = HtmlHelper::_('date', 'now', 'Y-m-d');
+        $this['config']['actual_date'] = HtmlHelper::_('date', 'now', Text::_('DATE_FORMAT_LC'));
         $this['config']['page_class']  = $app->getParams()->get('pageclass_sfx');
 
         // frontentediting
@@ -259,7 +265,7 @@ class SystemHelper extends AbstractHelper
                 $json = isset($_POST['config']) ? $_POST['config'] : '{}';
 
                 // save config file
-                $message = ($json and null !== $config = json_decode($json, true) and !empty($config) and \JFile::write($file, $json)) ? 'success' : 'failed';
+                $message = ($json and null !== $config = json_decode($json, true) and !empty($config) and File::write($file, $json)) ? 'success' : 'failed';
 
                 break;
 
@@ -320,7 +326,7 @@ class SystemHelper extends AbstractHelper
                 $message = 'success';
 
                 foreach ($files as $file => $data) {
-                    if (\JFile::write($path . $file, $data) === false) {
+                    if (File::write($path . $file, $data) === false) {
                         $message = sprintf('Unable to write file (%s).', $path . $file);
                         break;
                     }
@@ -333,7 +339,7 @@ class SystemHelper extends AbstractHelper
                         $dir = dirname($dir);
 
                         if (!isset($files['/styles/'.basename($dir).'/style.less'])) {
-                            \JFolder::delete($dir);
+                            Folder::delete($dir);
                         }
                     }
                 }

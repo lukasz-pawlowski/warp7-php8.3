@@ -6,6 +6,8 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
+use Joomla\CMS\Factory;
+
 // render widgets
 $widgets    = $this['widgets']->load($position);
 $count      = count($widgets);
@@ -15,7 +17,7 @@ $displays   = array_fill_keys(array('small', 'medium', 'large'), array());
 $responsive = $config->get("grid.{$position}.responsive", '') ?: 'small';
 $stacked    = array_diff($keys = array_keys($displays), array_slice($keys, array_search($responsive, $keys)));
 
-$user = \JFactory::getUser();
+$user = Factory::getUser();
 
 foreach ($widgets as $index => $widget) {
 

@@ -9,7 +9,10 @@
 // no direct access
 defined('_JEXEC') or die;
 
-if (in_array(JFactory::getApplication()->scope, array('com_content', 'com_finder', 'com_search', 'com_tags'))) {
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
+if (in_array(Factory::getApplication()->scope, array('com_content', 'com_finder', 'com_search', 'com_tags'))) {
 
 	function pagination_list_render($list) {
 
@@ -69,25 +72,25 @@ if (in_array(JFactory::getApplication()->scope, array('com_content', 'com_finder
 		$cls = '';
 		$title = '';
 
-	    if ($item->text == JText::_('JNEXT')) {
+	    if ($item->text == Text::_('JNEXT')) {
 	    	$item->text = '<i class="uk-icon-angle-right"></i>';
 	    	$cls = "next";
-	    	$title = JText::_('JNEXT');
+	    	$title = Text::_('JNEXT');
 	    }
-	    else if ($item->text == JText::_('JPREV')) {
+	    else if ($item->text == Text::_('JPREV')) {
 	    	$item->text = '<i class="uk-icon-angle-left"></i>';
 	    	$cls = "previous";
-	    	$title = JText::_('JPREV');
+	    	$title = Text::_('JPREV');
 	    }
-		else if ($item->text == JText::_('JLIB_HTML_START')) {
+		else if ($item->text == Text::_('JLIB_HTML_START')) {
 			$item->text = '<i class="uk-icon-angle-double-left"></i>';
 			$cls = "first";
-			$title = JText::_('JLIB_HTML_START');
+			$title = Text::_('JLIB_HTML_START');
 		}
-	    else if ($item->text == JText::_('JLIB_HTML_END')) {
+	    else if ($item->text == Text::_('JLIB_HTML_END')) {
 	    	$item->text = '<i class="uk-icon-angle-double-right"></i>';
 	    	$cls = "last";
-	    	$title = JText::_('JLIB_HTML_END');
+	    	$title = Text::_('JLIB_HTML_END');
 	    }
 
 	    return '<li><a class="'.$cls.'" href="'.$item->link.'" title="'.$title.'">'.$item->text.'</a></li>';

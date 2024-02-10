@@ -9,13 +9,17 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 
 ?>
 
 <?php
-$app = JFactory::getApplication();
+$app = Factory::getApplication();
 $app->input->set('layout', 'blog');
 ?>
 
@@ -43,15 +47,15 @@ $app->input->set('layout', 'blog');
 					<img src="<?php echo $this->category->getParams()->get('image'); ?>" alt="<?php echo $this->category->getParams()->get('image'); ?>" class="uk-align-right">
 				<?php endif; ?>
 
-				<?php if ($this->params->get('show_description') && $this->category->description) echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
+				<?php if ($this->params->get('show_description') && $this->category->description) echo HTMLHelper::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
 
 				<?php
 
 					if ($this->params->get('show_tags', 1) && !empty($this->category->tags->itemTags)) {
 						JLoader::register('TagsHelperRoute', JPATH_BASE . '/components/com_tags/helpers/route.php');
-						echo '<p>'.JText::_('TPL_WARP_TAGS').': ';
+						echo '<p>'.Text::_('TPL_WARP_TAGS').': ';
 						foreach ($this->category->tags->itemTags as $i => $tag) {
-							if (in_array($tag->access, JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id')))) {
+							if (in_array($tag->access, JAccess::getAuthorisedViewLevels(Factory::getUser()->get('id')))) {
 								if($i > 0) echo ', ';
 								echo '<a href="'.JRoute::_(TagsHelperRoute::getTagRoute($tag->tag_id . ':' . $tag->alias)).'">'.$this->escape($tag->title).'</a>';
 							}
@@ -70,7 +74,7 @@ $app->input->set('layout', 'blog');
 
 <?php if (empty($this->lead_items) && empty($this->link_items) && empty($this->intro_items)) : ?>
 	<?php if ($this->params->get('show_no_articles', 1)) : ?>
-		<div class="uk-alert"><?php echo JText::_('COM_CONTENT_NO_ARTICLES'); ?></div>
+		<div class="uk-alert"><?php echo Text::_('COM_CONTENT_NO_ARTICLES'); ?></div>
 	<?php endif; ?>
 <?php endif; ?>
 
@@ -123,7 +127,7 @@ if ($articles) echo $articles;
 <div class="uk-grid">
 	<div class="uk-width-1-1">
 		<div class="uk-panel uk-panel-header">
-			<h3 class="uk-panel-title"><?php echo JText::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
+			<h3 class="uk-panel-title"><?php echo Text::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
 			<ul class="uk-list">
 				<?php foreach ($this->link_items as &$item) : ?>
 				<li><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid)); ?>"><?php echo $item->title; ?></a></li>

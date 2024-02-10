@@ -9,7 +9,10 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.keepalive');
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HTMLHelper::_('behavior.keepalive');
 
 ?>
 
@@ -20,21 +23,21 @@ JHtml::_('behavior.keepalive');
 		<?php if ($params->get('greeting')) : ?>
 		<div class="uk-form-row">
 			<?php if ($params->get('name') == 0) : {
-				echo JText::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('name')));
+				echo Text::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('name')));
 			} else : {
-				echo JText::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('username')));
+				echo Text::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('username')));
 			} endif; ?>
 		</div>
 		<?php endif; ?>
 
 		<div class="uk-form-row">
-			<button class="uk-button uk-button-primary" value="<?php echo JText::_('JLOGOUT'); ?>" name="Submit" type="submit"><?php echo JText::_('JLOGOUT'); ?></button>
+			<button class="uk-button uk-button-primary" value="<?php echo Text::_('JLOGOUT'); ?>" name="Submit" type="submit"><?php echo Text::_('JLOGOUT'); ?></button>
 		</div>
 
 		<input type="hidden" name="option" value="com_users">
 		<input type="hidden" name="task" value="user.logout">
 		<input type="hidden" name="return" value="<?php echo $return; ?>">
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 
 <?php endif; ?>

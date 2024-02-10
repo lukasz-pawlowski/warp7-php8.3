@@ -10,6 +10,7 @@ namespace Warp\Joomla\Helper;
 
 use Warp\Warp;
 use Warp\Helper\AbstractHelper;
+use Joomla\CMS\File;
 
 /**
  * Option helper class, store option data.
@@ -62,6 +63,6 @@ class OptionHelper extends AbstractHelper
 	{
 		$this->data[$name] = $value;
         $json = json_encode($this->data, defined('JSON_PRETTY_PRINT') ? JSON_NUMERIC_CHECK|JSON_PRETTY_PRINT : JSON_NUMERIC_CHECK);
-        \JFile::write($this->file, $json);
+        File::write($this->file, $json);
 	}
 }

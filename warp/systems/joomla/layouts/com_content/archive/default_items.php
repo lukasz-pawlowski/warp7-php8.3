@@ -9,7 +9,10 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 $params = &$this->params;
 
 foreach ($this->items as $item) {
@@ -27,12 +30,12 @@ foreach ($this->items as $item) {
 		'hook_aftertitle' => '',
 		'hook_beforearticle' => '',
 		'hook_afterarticle' => '',
-		'article' => $params->get('show_intro') ? JHtml::_('string.truncate', $item->introtext, $params->get('introtext_limit')) : '',
+		'article' => $params->get('show_intro') ? HTMLHelper::_('string.truncate', $item->introtext, $params->get('introtext_limit')) : '',
 		'url' => JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug))
 	));
 
 	if ($params->get('show_readmore') && $item->readmore) {
-		$args['more'] = $item->alternative_readmore ?: JText::_('TPL_WARP_CONTINUE_READING');
+		$args['more'] = $item->alternative_readmore ?: Text::_('TPL_WARP_CONTINUE_READING');
 	}
 
 	// render template

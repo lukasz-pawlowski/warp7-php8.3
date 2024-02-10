@@ -8,12 +8,17 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
+
 // Activate the highlighter if enabled.
 if (!empty($this->query->highlight) && $this->params->get('highlight_terms', 1)) {
-	JHtml::_('behavior.highlighter', $this->query->highlight);
+	HTMLHelper::_('behavior.highlighter', $this->query->highlight);
 }
 
-$app = JFactory::getApplication();
+$app = Factory::getApplication();
 
 ?>
 
@@ -24,7 +29,7 @@ $app = JFactory::getApplication();
 		// Display the suggested search query.
 		if ($this->suggested && $this->params->get('show_suggested_query', 1)) {
 			// Replace the base query string with the suggested query string.
-			$uri = JUri::getInstance($this->query->toURI());
+			$uri = Uri::getInstance($this->query->toURI());
 			$uri->setVar('q', $this->suggested);
 
 			// Compile the suggested query link.
@@ -32,7 +37,7 @@ $app = JFactory::getApplication();
 					. $this->escape($this->suggested)
 					. '</a>';
 
-			echo JText::sprintf('COM_FINDER_SEARCH_SIMILAR', $link);
+			echo Text::sprintf('COM_FINDER_SEARCH_SIMILAR', $link);
 		}
 		// Display the explained search query.
 		elseif ($this->explained && $this->params->get('show_explained_query', 1)) {
@@ -45,12 +50,12 @@ $app = JFactory::getApplication();
 
 <?php if ($this->total == 0) : ?>
 
-	<h1 class="title"><?php echo JText::_('COM_FINDER_SEARCH_NO_RESULTS_HEADING'); ?></h1>
+	<h1 class="title"><?php echo Text::_('COM_FINDER_SEARCH_NO_RESULTS_HEADING'); ?></h1>
 
 	<?php if ($app->getLanguageFilter()) : ?>
-		<p><?php echo JText::sprintf('COM_FINDER_SEARCH_NO_RESULTS_BODY_MULTILANG', $this->escape($this->query->input)); ?></p>
+		<p><?php echo Text::sprintf('COM_FINDER_SEARCH_NO_RESULTS_BODY_MULTILANG', $this->escape($this->query->input)); ?></p>
 	<?php else : ?>
-		<p><?php echo JText::sprintf('COM_FINDER_SEARCH_NO_RESULTS_BODY', $this->escape($this->query->input)); ?></p>
+		<p><?php echo Text::sprintf('COM_FINDER_SEARCH_NO_RESULTS_BODY', $this->escape($this->query->input)); ?></p>
 	<?php endif; ?>
 
 <?php else : ?>

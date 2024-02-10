@@ -3,7 +3,7 @@
 <div id="menus">
 
     <select data-menu-filter>
-        <?php foreach ($menus = \JHtml::_('menu.menus') as $menu) : ?>
+        <?php foreach ($menus = HTMLHelper::_('menu.menus') as $menu) : ?>
             <option value="<?php echo $menu->value ?>"><?php echo $menu->text ?></option>
         <?php endforeach ?>
     </select>

@@ -8,8 +8,12 @@
 
 defined('_JEXEC') or die;
 
-$id   = \JFactory::getApplication()->getTemplate('template')->id;
-$link = \JUri::root() . 'administrator/index.php?option=com_templates&view=style&layout=edit&id=' . $id;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
+
+$id   = Factory::getApplication()->getTemplate('template')->id;
+$link = Uri::root() . 'administrator/index.php?option=com_templates&view=style&layout=edit&id=' . $id;
 
 ?>
 
@@ -18,5 +22,5 @@ $link = \JUri::root() . 'administrator/index.php?option=com_templates&view=style
 </script>
 
 <noscript>
-    <a href="<?php echo $link ?>" class="uk-button"><?php JText::_('JADMINISTRATOR'); ?></a>
+    <a href="<?php echo $link ?>" class="uk-button"><?php Text::_('JADMINISTRATOR'); ?></a>
 </noscript>

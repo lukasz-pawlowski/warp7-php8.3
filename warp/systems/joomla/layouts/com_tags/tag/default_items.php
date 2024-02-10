@@ -8,23 +8,27 @@
 
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 ?>
 
 <?php if ($this->params->get('show_headings') || $this->params->get('filter_field') || $this->params->get('show_pagination_limit')) : ?>
 
-<form class="uk-form uk-margin-bottom uk-clearfix" action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
+<form class="uk-form uk-margin-bottom uk-clearfix" action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
 
 	<?php if ($this->params->get('filter_field')) :?>
 		<div class="uk-float-left">
-			<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" onchange="document.adminForm.submit();" title="<?php echo JText::_('COM_TAGS_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo JText::_('COM_TAGS_TITLE_FILTER_LABEL'); ?>" />
+			<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" onchange="document.adminForm.submit();" title="<?php echo Text::_('COM_TAGS_FILTER_SEARCH_DESC'); ?>" placeholder="<?php echo Text::_('COM_TAGS_TITLE_FILTER_LABEL'); ?>" />
 		</div>
 	<?php endif; ?>
 	<?php if ($this->params->get('show_pagination_limit')) : ?>
 		<div class="uk-float-right">
 			<label for="limit">
-				<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>
+				<?php echo Text::_('JGLOBAL_DISPLAY_NUM'); ?>
 			</label>
 			<?php echo $this->pagination->getLimitBox(); ?>
 		</div>
@@ -43,7 +47,7 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 if (!$this->items) {
 
-	echo '<div class="uk-card uk-card-default"><p>'.JText::_('COM_TAGS_NO_ITEMS').'</p></div>';
+	echo '<div class="uk-card uk-card-default"><p>'.Text::_('COM_TAGS_NO_ITEMS').'</p></div>';
 
 } else {
 
@@ -68,7 +72,7 @@ if (!$this->items) {
             'hook_aftertitle' => '',
             'hook_beforearticle' => '',
             'hook_afterarticle' => '',
-            'article' => ($this->params->get('tag_list_show_item_description', 1)) ? JHtml::_('string.truncate', $item->core_body, $this->params->get('tag_list_item_maximum_characters')) : '',
+            'article' => ($this->params->get('tag_list_show_item_description', 1)) ? HTMLHelper::_('string.truncate', $item->core_body, $this->params->get('tag_list_item_maximum_characters')) : '',
             'tags' => '',
             'edit' => '',
             'url' => ($item->core_state != 0) ? JRoute::_(TagsHelperRoute::getItemRoute($item->content_item_id, $item->core_alias, $item->core_catid, $item->core_language, $item->type_alias, $item->router)) : '',

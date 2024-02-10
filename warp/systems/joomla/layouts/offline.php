@@ -7,7 +7,13 @@
 */
 
 defined('_JEXEC') or die;
-$app = JFactory::getApplication();
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+
+$app = Factory::getApplication();
 
 // add css
 $this['asset']->addFile('css', 'css:theme.css');
@@ -47,34 +53,34 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 		<form class="uk-form" action="<?php echo JRoute::_('index.php', true); ?>" method="post">
 
 			<div class="uk-form-row">
-				<input class="uk-width-1-1" type="text" name="username" placeholder="<?php echo JText::_('JGLOBAL_USERNAME') ?>">
+				<input class="uk-width-1-1" type="text" name="username" placeholder="<?php echo Text::_('JGLOBAL_USERNAME') ?>">
 			</div>
 
 			<div class="uk-form-row">
-				<input class="uk-width-1-1" type="password" name="password" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>">
+				<input class="uk-width-1-1" type="password" name="password" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD') ?>">
 			</div>
 
 			<?php if (count($twofactormethods) > 1) : ?>
 			<div class="uk-form-row">
-				<input class="uk-width-1-1" type="text" name="secretkey" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
+				<input class="uk-width-1-1" type="text" name="secretkey" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
 			</div>
 			<?php endif; ?>
 
 			<div class="uk-form-row">
-				<button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="Submit"><?php echo JText::_('JLOGIN') ?></button>
+				<button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="Submit"><?php echo Text::_('JLOGIN') ?></button>
 			</div>
 
 			<div class="uk-form-row">
 				<div class="uk-form-controls">
-					<input type="checkbox" name="remember" value="yes" placeholder="<?php echo JText::_('JGLOBAL_REMEMBER_ME') ?>">
-					<label for="remember"><?php echo JText::_('JGLOBAL_REMEMBER_ME') ?></label>
+					<input type="checkbox" name="remember" value="yes" placeholder="<?php echo Text::_('JGLOBAL_REMEMBER_ME') ?>">
+					<label for="remember"><?php echo Text::_('JGLOBAL_REMEMBER_ME') ?></label>
 				</div>
 			</div>
 
 			<input type="hidden" name="option" value="com_users">
 			<input type="hidden" name="task" value="user.login">
-			<input type="hidden" name="return" value="<?php echo base64_encode(JURI::base()) ?>">
-			<?php echo JHtml::_('form.token'); ?>
+			<input type="hidden" name="return" value="<?php echo base64_encode(Uri::base()) ?>">
+			<?php echo HTMLHelper::_('form.token'); ?>
 
 		</form>
 

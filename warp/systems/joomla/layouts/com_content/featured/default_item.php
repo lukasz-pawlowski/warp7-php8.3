@@ -9,6 +9,11 @@
 // no direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
+
 // Create a shortcut for params.
 $item 	 = $this->item;
 $params  = $item->params;
@@ -27,20 +32,20 @@ $args = array_merge($args, array(
 ));
 
 // set edit
-$args['edit']  = $canEdit ? JHtml::_('icon.edit', $this->item, $params) : '';
-$args['edit'] .= $params->get('show_print_icon') ? JHtml::_('icon.print_popup', $this->item, $params) : '';
-$args['edit'] .= $params->get('show_email_icon') ? JHtml::_('icon.email', $this->item, $params) : '';
+$args['edit']  = $canEdit ? HTMLHelper::_('icon.edit', $this->item, $params) : '';
+$args['edit'] .= $params->get('show_print_icon') ? HTMLHelper::_('icon.print_popup', $this->item, $params) : '';
+$args['edit'] .= $params->get('show_email_icon') ? HTMLHelper::_('icon.email', $this->item, $params) : '';
 
 // set url
 if ($params->get('access-view')) {
 	$link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
 } else {
-	$menu = JFactory::getApplication()->getMenu();
+	$menu = Factory::getApplication()->getMenu();
 	$active = $menu->getActive();
 	$itemId = $active->id;
 	$link1 = JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
 	$returnURL = ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid);
-	$link = new JURI($link1);
+	$link = new Uri($link1);
 	$link->setVar('return', base64_encode($returnURL));
 }
 $args['url'] = $link;
@@ -48,11 +53,11 @@ $args['url'] = $link;
 // set more
 if ($params->get('show_readmore') && $this->item->readmore) {
 	if (!$params->get('access-view')) {
-		$args['more'] = JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');
+		$args['more'] = Text::_('COM_CONTENT_REGISTER_TO_READ_MORE');
 	} elseif ($readmore = $this->item->alternative_readmore) {
 		$args['more'] = $readmore;
 	} else {
-		$args['more'] = JText::_('TPL_WARP_CONTINUE_READING');
+		$args['more'] = Text::_('TPL_WARP_CONTINUE_READING');
 	}
 }
 

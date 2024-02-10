@@ -9,6 +9,10 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\File;
+use Joomla\CMS\HTML\HTMLHelper;
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 
@@ -22,9 +26,9 @@ class JFormFieldConfig extends JFormField
 		$this->copyAjaxCallback();
 
   		// Load jQuery
-		JHtml::_('jquery.framework');
+		HTMLHelper::_('jquery.framework');
 
-		$template = $this->form->getValue('template') ? $this->form->getValue('template') : \JFactory::getApplication()->getTemplate();
+		$template = $this->form->getValue('template') ? $this->form->getValue('template') : Factory::getApplication()->getTemplate();
 
 		// get warp
         $warp = require(JPATH_ROOT.'/templates/'.$template.'/warp.php');
@@ -53,7 +57,7 @@ class JFormFieldConfig extends JFormField
 		$target = JPATH_ROOT.'/administrator/templates/system/warp-ajax.php';
 
 		if (!file_exists($target) || md5_file($source) != md5_file($target)) {
-			JFile::copy($source, $target);
+			File::copy($source, $target);
 		}
 	}
 }

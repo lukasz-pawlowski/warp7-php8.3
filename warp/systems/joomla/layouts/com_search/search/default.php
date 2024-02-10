@@ -9,8 +9,10 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
+
 // get application
-$app = JFactory::getApplication();
+$app = Factory::getApplication();
 
 if ($app->input->getWord('type', '') == 'json' && $app->input->getWord('tmpl', '') == 'raw') :
 

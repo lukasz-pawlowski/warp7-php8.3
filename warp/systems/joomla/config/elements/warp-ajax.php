@@ -9,8 +9,10 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
+
 // get template data/path
-$app   = JFactory::getApplication();
+$app   = Factory::getApplication();
 $templ = $app->input->get('template');
 $task  = $app->input->get('callback');
 $warp  = JPATH_ROOT."/templates/{$templ}/warp.php";

@@ -8,6 +8,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 if (!empty($this->query->highlight) && empty($this->result->mime) && $this->params->get('highlight_terms', 1) && JPluginHelper::isEnabled('system', 'highlight')) {
 	$route = $this->result->route . '&highlight=' . base64_encode(json_encode($this->query->highlight));
 } else {
@@ -31,7 +33,7 @@ $args = array(
     'hook_aftertitle' => '',
     'hook_beforearticle' => '',
     'hook_afterarticle' => '',
-    'article' => ($this->params->get('show_description', 1)) ? JHtml::_('string.truncate', $this->result->description, $this->params->get('description_length', 255)) : '',
+    'article' => ($this->params->get('show_description', 1)) ? HTMLHelper::_('string.truncate', $this->result->description, $this->params->get('description_length', 255)) : '',
     'tags' => '',
     'edit' => '',
     'url' => JRoute::_($route),

@@ -6,6 +6,8 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
+use Joomla\CMS\Language\Text;
+
 function renderMessage($msgList) {
 
     // Build the return string
@@ -32,7 +34,7 @@ function renderMessage($msgList) {
 
             if (count($msgs)) {
 
-                $buffer[] = '<h2>' . JText::_($type) . '</h2>';
+                $buffer[] = '<h2>' . Text::_($type) . '</h2>';
 
                 foreach ($msgs as $msg) {
                     $buffer[] = '<p>'.$msg.'</p>';

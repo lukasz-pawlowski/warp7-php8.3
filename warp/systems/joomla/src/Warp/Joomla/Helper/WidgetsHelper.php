@@ -10,6 +10,8 @@ namespace Warp\Joomla\Helper;
 
 use Warp\Warp;
 use Warp\Helper\AbstractHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * Widget helper class, count/render widgets.
@@ -40,7 +42,7 @@ class WidgetsHelper extends AbstractHelper
     {
         parent::__construct($warp);
 
-		$this->document = \JFactory::getDocument();
+		$this->document = Factory::getDocument();
 		$this->renderer = $this->document->loadRenderer('module');
 	}
 
@@ -112,7 +114,7 @@ class WidgetsHelper extends AbstractHelper
             return array();
         }
 
-		$db = \JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		// set query
 		$db->setQuery($db->getQuery(true)
@@ -126,7 +128,7 @@ class WidgetsHelper extends AbstractHelper
 		try {
 			$modules = $db->loadObjectList();
 		} catch (\RuntimeException $e) {
-			\JLog::add(\JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $e->getMessage()), \JLog::WARNING, 'jerror');
+			\JLog::add(Text::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $e->getMessage()), \JLog::WARNING, 'jerror');
             $modules = array();
 		}
 

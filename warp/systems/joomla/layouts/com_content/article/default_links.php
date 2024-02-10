@@ -9,6 +9,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 // Create shortcut
 $urls = json_decode($this->item->urls);
 
@@ -64,7 +66,7 @@ $params	= $this->item->params;
 						break;
 					case 3:
 						// open in a modal window
-						JHtml::_('behavior.modal', 'a.modal'); ?>
+						HTMLHelper::_('behavior.modal', 'a.modal'); ?>
 						<a class="modal" href="<?php echo htmlspecialchars($link); ?>"  rel="{handler: 'iframe', size: {x:600, y:600}}">
 							<?php echo htmlspecialchars($label) . ' </a>';
 						break;

@@ -26,20 +26,20 @@
 		<?php
 
 			$author   = ($author && $author_url) ? '<a href="'.$author_url.'">'.$author.'</a>' : $author;
-			$date     = ($date) ? ($datetime ? '<time datetime="'.$datetime.'">'.JHtml::_('date', $date, JText::_('DATE_FORMAT_LC3')).'</time>' : JHtml::_('date', $date, JText::_('DATE_FORMAT_LC3'))) : '';
+			$date     = ($date) ? ($datetime ? '<time datetime="'.$datetime.'">'.HTMLHelper::_('date', $date, Text::_('DATE_FORMAT_LC3')).'</time>' : HTMLHelper::_('date', $date, Text::_('DATE_FORMAT_LC3'))) : '';
 			$category = ($category && $category_url) ? '<a href="'.$category_url.'">'.$category.'</a>' : $category;
 
 			if($author && $date) {
-				printf(JText::_('TPL_WARP_META_AUTHOR_DATE'), $author, $date);
+				printf(Text::_('TPL_WARP_META_AUTHOR_DATE'), $author, $date);
 			} elseif ($author) {
-				printf(JText::_('TPL_WARP_META_AUTHOR'), $author);
+				printf(Text::_('TPL_WARP_META_AUTHOR'), $author);
 			} elseif ($date) {
-				printf(JText::_('TPL_WARP_META_DATE'), $date);
+				printf(Text::_('TPL_WARP_META_DATE'), $date);
 			}
 
 			if ($category) {
 				echo ' ';
-				printf(JText::_('TPL_WARP_META_CATEGORY'), $category);
+				printf(Text::_('TPL_WARP_META_CATEGORY'), $category);
 			}
 
 		?>
@@ -62,7 +62,7 @@
 	<?php endif; ?>
 
 	<?php if ($tags) : ?>
-	<p><?php echo JText::_('TPL_WARP_TAGS').': '.$tags; ?></p>
+	<p><?php echo Text::_('TPL_WARP_TAGS').': '.$tags; ?></p>
 	<?php endif; ?>
 
 	<?php if ($more) : ?>
@@ -77,20 +77,20 @@
 
 	<?php if ($this['config']->get('article_meta', false) && ($date_published || $date_modified || $hits)) : ?>
 	<?php
-		$date_published = ($date_published) ? JHtml::_('date', $date_published, JText::_('DATE_FORMAT_LC3')) : '';
-		$date_modified = ($date_modified) ? JHtml::_('date', $date_modified, JText::_('DATE_FORMAT_LC3')) : '';
+		$date_published = ($date_published) ? HTMLHelper::_('date', $date_published, Text::_('DATE_FORMAT_LC3')) : '';
+		$date_modified = ($date_modified) ? HTMLHelper::_('date', $date_modified, Text::_('DATE_FORMAT_LC3')) : '';
 	?>
 	<ul class="uk-list">
 		<?php if ($date_published) : ?>
-			<li><?php printf(JText::_('COM_CONTENT_PUBLISHED_DATE_ON'), $date_published); ?></li>
+			<li><?php printf(Text::_('COM_CONTENT_PUBLISHED_DATE_ON'), $date_published); ?></li>
 		<?php endif; ?>
 
 		<?php if ($date_modified) : ?>
-			<li><?php printf(JText::_('COM_CONTENT_LAST_UPDATED'), $date_modified); ?></li>
+			<li><?php printf(Text::_('COM_CONTENT_LAST_UPDATED'), $date_modified); ?></li>
 		<?php endif; ?>
 
 		<?php if ($hits) : ?>
-			<li><?php printf(JText::_('COM_CONTENT_ARTICLE_HITS'), $hits); ?></li>
+			<li><?php printf(Text::_('COM_CONTENT_ARTICLE_HITS'), $hits); ?></li>
 		<?php endif; ?>
 	</ul>
 	<?php endif; ?>
@@ -99,13 +99,13 @@
 	<ul class="uk-pagination">
 		<?php if ($previous) : ?>
 		<li class="uk-pagination-previous">
-			<a href="<?php echo $previous; ?>"><i class="uk-icon-angle-double-left"></i> <?php echo JText::_('JPREV'); ?></a>
+			<a href="<?php echo $previous; ?>"><i class="uk-icon-angle-double-left"></i> <?php echo Text::_('JPREV'); ?></a>
 		</li>
 		<?php endif; ?>
 
 		<?php if ($next) : ?>
 		<li class="uk-pagination-next">
-			<a href="<?php echo $next; ?>"><?php echo JText::_('JNEXT'); ?> <i class="uk-icon-angle-double-right"></i></a>
+			<a href="<?php echo $next; ?>"><?php echo Text::_('JNEXT'); ?> <i class="uk-icon-angle-double-right"></i></a>
 		</li>
 		<?php endif; ?>
 	</ul>

@@ -9,7 +9,10 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 ?>
 
@@ -63,7 +66,7 @@ if ($articles) echo $articles;
 ?>
 
 <?php if (!empty($this->link_items)) : ?>
-<h3><?php echo JText::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
+<h3><?php echo Text::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
 <ul class="uk-list">
 	<?php foreach ($this->link_items as &$item) : ?>
 	<li><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug)); ?>"><?php echo $item->title; ?></a></li>

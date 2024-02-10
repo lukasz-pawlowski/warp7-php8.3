@@ -8,6 +8,8 @@
 
 namespace Warp\Joomla\Menu;
 
+use Joomla\CMS\Factory;
+
 /**
  * Menu base class.
  */
@@ -31,7 +33,7 @@ class Pre
 		}
 
 		// init vars
-		$menu = \JFactory::getApplication()->getMenu();
+		$menu = Factory::getApplication()->getMenu();
 
         // get warp config
         $config = $warp['config'];

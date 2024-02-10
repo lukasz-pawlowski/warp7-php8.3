@@ -11,6 +11,8 @@
 <link rel="apple-touch-icon-precomposed" href="<?php echo $this['path']->url('theme:apple_touch_icon.png'); ?>">
 <?php
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 // remove deprecated meta-data (html5)
 if ($this['system']->document->getType() == 'html') {
 	$head = $this['system']->document->getHeadData();
@@ -19,7 +21,7 @@ if ($this['system']->document->getType() == 'html') {
 }
 
 // load jQuery
-JHtml::_('jquery.framework');
+HTMLHelper::_('jquery.framework');
 
 // get styles and scripts
 $styles  = $this['asset']->get('css');
@@ -27,7 +29,7 @@ $scripts = $this['asset']->get('js');
 
 // load bootstrap styles
 if ($this['config']->get('bootstrap', true) && $file = $this['path']->url('css:bootstrap.css')) {
-	JHtml::_('bootstrap.framework');
+	HTMLHelper::_('bootstrap.framework');
 	$styles->prepend($bootstrap = $this['asset']->createFile($file));
 }
 
