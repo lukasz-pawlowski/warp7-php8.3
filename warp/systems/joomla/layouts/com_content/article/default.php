@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
 // Create a shortcut for params.
 $item    = $this->item;
@@ -64,7 +65,7 @@ if ($params->get('access-view')) {
 
 	// optional link to let them register to see the whole article.
 	if ($params->get('show_readmore') && $this->item->fulltext != null) {
-		$link1 = JRoute::_('index.php?option=com_users&view=login');
+		$link1 = Route::_('index.php?option=com_users&view=login');
 		$link = new Uri($link1);
 		$article .= '<p class="links">';
 		$article .= '<a href="'.$link.'">';
@@ -97,7 +98,7 @@ if ($params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) {
 	foreach ($this->item->tags->itemTags as $i => $tag) {
 		if (in_array($tag->access, JAccess::getAuthorisedViewLevels(Factory::getUser()->get('id')))) {
 			if($i > 0) $tags .= ', ';
-			$tags .= '<a href="'.JRoute::_(TagsHelperRoute::getTagRoute($tag->tag_id . ':' . $tag->alias)).'">'.$this->escape($tag->title).'</a>';
+			$tags .= '<a href="'.Route::_(TagsHelperRoute::getTagRoute($tag->tag_id . ':' . $tag->alias)).'">'.$this->escape($tag->title).'</a>';
 		}
 	}
 

@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 // Create a shortcut for params.
 $item 	 = $this->item;
@@ -38,12 +39,12 @@ $args['edit'] .= $params->get('show_email_icon') ? HTMLHelper::_('icon.email', $
 
 // set url
 if ($params->get('access-view')) {
-	$link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
+	$link = Route::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
 } else {
 	$menu = Factory::getApplication()->getMenu();
 	$active = $menu->getActive();
 	$itemId = $active->id;
-	$link1 = JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
+	$link1 = Route::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
 	$returnURL = ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid);
 	$link = new Uri($link1);
 	$link->setVar('return', base64_encode($returnURL));

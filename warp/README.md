@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.0.0
+
+### Major update
+
+- Adjusted for PHP8.3 and Joomla 5
+
 ## 7.3.37
 
 ### Added

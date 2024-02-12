@@ -6,6 +6,8 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
+use Joomla\CMS\Router\Route;
+
 if (!$tmpl_xml = $this['dom']->create($this['path']->path('theme:templateDetails.xml'), 'xml')) {
     echo 'No template positions defined.';
     return;
@@ -25,7 +27,7 @@ foreach ($tmpl_xml->find('positions > position') as $position) {
 
 ?>
 
-<p>Customize your modules appearance and select your favorite style, icon or badge. To configure your modules, please visit the <a href="<?php echo JRoute::_('index.php?option=com_modules') ?>">modules settings</a> screen.</p>
+<p>Customize your modules appearance and select your favorite style, icon or badge. To configure your modules, please visit the <a href="<?php echo Route::_('index.php?option=com_modules') ?>">modules settings</a> screen.</p>
 
 <div id="widgets">
 

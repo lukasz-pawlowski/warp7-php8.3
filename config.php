@@ -1,6 +1,6 @@
 <?php
 /**
-* @package   Master
+* @package   yoo_master2
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
@@ -23,8 +23,8 @@ return array(
         ),
 
         'files' => array(
-            '/css/theme.css' => 'less:theme.less',
-            '/css/woocommerce.css' => 'less:woocommerce.less'
+            '/css/theme.css'     => 'less:theme.less',
+            '/css/bootstrap.css' => 'less:bootstrap.less'
         )
 
     ),

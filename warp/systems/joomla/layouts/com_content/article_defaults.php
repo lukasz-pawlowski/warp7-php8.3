@@ -6,6 +6,8 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
+use Joomla\CMS\Router\Route;
+
 $default_args = array(
 	'permalink' => '',
 	'image' => '',
@@ -41,7 +43,7 @@ if (!isset($item, $params)) {
 $images	= json_decode($item->images);
 
 $args = array_merge($default_args, array(
-    'permalink' 	     => JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid), true, -1),
+    'permalink' 	     => Route::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid), true, -1),
     'image' 			 => isset($images->image_fulltext) && $params->get('access-view') ? htmlspecialchars($images->image_fulltext) : '',
     'image_alignment' 	 => !isset($images->float_fulltext) || empty($images->float_fulltext) ? htmlspecialchars($params->get('float_fulltext')) : htmlspecialchars($images->float_fulltext),
     'image_alt' 		 => isset($images->image_fulltext_alt) ? htmlspecialchars($images->image_fulltext_alt) : '',
@@ -49,13 +51,13 @@ $args = array_merge($default_args, array(
     'title' 			 => $params->get('show_title') ? $this->escape($item->title) : '',
 	'title_link' 		 => $params->get('link_titles'),
 	'author' 			 => $params->get('show_author') ? ($item->created_by_alias ? $item->created_by_alias : $item->author) : '',
-	'author_url'		 => !empty($item->contactid) && $params->get('link_author') == true ? JRoute::_('index.php?option=com_contact&view=contact&id='.$item->contactid) : '',
+	'author_url'		 => !empty($item->contactid) && $params->get('link_author') == true ? Route::_('index.php?option=com_contact&view=contact&id='.$item->contactid) : '',
 	'date' 	 	 		 => $params->get('show_create_date') ? $item->created : '',
     'date_published' 	 => $params->get('show_publish_date') ? $item->publish_up : '',
 	'date_modified' 	 => $params->get('show_modify_date') ? $item->modified : '',
     'datetime' 			 => substr($item->publish_up, 0, 10),
 	'category'			 => $params->get('show_category') ? $this->escape($item->category_title) : '',
-    'category_url' 		 => $params->get('link_category') && $item->catid ? JRoute::_(ContentHelperRoute::getCategoryRoute($item->catid)) : '',
+    'category_url' 		 => $params->get('link_category') && $item->catid ? Route::_(ContentHelperRoute::getCategoryRoute($item->catid)) : '',
 	'hits' 				 => $params->get('show_hits') ? $item->hits : '',
     'hook_aftertitle' 	 => !$params->get('show_intro') ? $item->event->afterDisplayTitle : '',
     'hook_beforearticle' => $item->event->beforeDisplayContent.(isset($item->toc) ? $item->toc : ''),

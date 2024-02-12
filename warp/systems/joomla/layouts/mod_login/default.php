@@ -11,12 +11,13 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('behavior.keepalive');
 
 ?>
 
-<form class="uk-form" action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post">
+<form class="uk-form" action="<?php echo Route::_('index.php', true, $params->get('usesecure')); ?>" method="post">
 
 	<?php if ($params->get('pretext')) : ?>
 	<div class="uk-form-row">
@@ -51,11 +52,11 @@ HTMLHelper::_('behavior.keepalive');
 	</div>
 
 	<ul class="uk-list uk-margin-bottom-remove">
-		<li><a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>"><?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a></li>
-		<li><a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>"><?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a></li>
+		<li><a href="<?php echo Route::_('index.php?option=com_users&view=reset'); ?>"><?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a></li>
+		<li><a href="<?php echo Route::_('index.php?option=com_users&view=remind'); ?>"><?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a></li>
 		<?php $usersConfig = JComponentHelper::getParams('com_users'); ?>
 		<?php if ($usersConfig->get('allowUserRegistration')) : ?>
-		<li><a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>"><?php echo Text::_('MOD_LOGIN_REGISTER'); ?></a></li>
+		<li><a href="<?php echo Route::_('index.php?option=com_users&view=registration'); ?>"><?php echo Text::_('MOD_LOGIN_REGISTER'); ?></a></li>
 		<?php endif; ?>
 	</ul>
 

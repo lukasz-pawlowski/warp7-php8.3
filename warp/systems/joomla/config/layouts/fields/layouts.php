@@ -57,7 +57,11 @@ $layouts = $config->get('layouts', array('default' => array()));
                     <?php else : ?>
                         <li>
                             <label>
-                                <input value="<?php echo $link->value ?>" name="<?php echo "{$name}[{$layout}][assignment][]" ?>" type="checkbox"<?php if (@in_array($link->value, $layouts[$layout]['assignment'])) echo ' checked="checked"' ?>> <?php echo ltrim($link->text, '- ') ?>
+                                <?php if(is_array($layouts[$layout]['assignment'])) : ?>
+                                    <input value="<?php echo $link->value ?>" name="<?php echo "{$name}[{$layout}][assignment][]" ?>" type="checkbox"<?php if (@in_array($link->value, $layouts[$layout]['assignment'])) echo ' checked="checked"' ?>> <?php echo ltrim($link->text, '- ') ?>
+                                <?php else : ?>
+                                    not array
+                                <?php endif; ?>
                             </label>
                     <?php endif; ?>
                     <?php

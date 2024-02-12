@@ -10,13 +10,14 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\File;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Form\FormField;
 
 jimport('joomla.html.html');
-jimport('joomla.form.formfield');
+//jimport('joomla.form.formfield');
 
-class JFormFieldConfig extends JFormField
+class JFormFieldConfig extends FormField
 {
 	protected $type = 'Config';
 

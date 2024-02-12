@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 $params = &$this->params;
@@ -31,7 +32,7 @@ foreach ($this->items as $item) {
 		'hook_beforearticle' => '',
 		'hook_afterarticle' => '',
 		'article' => $params->get('show_intro') ? HTMLHelper::_('string.truncate', $item->introtext, $params->get('introtext_limit')) : '',
-		'url' => JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug))
+		'url' => Route::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug))
 	));
 
 	if ($params->get('show_readmore') && $item->readmore) {

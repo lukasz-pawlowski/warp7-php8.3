@@ -1,30 +1,30 @@
 {
-	"dynamic_style": "0",
+	"dynamic_style": "1",
 	"compression": "0",
 	"panel_default": {
 		"top-a": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"top-b": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"bottom-a": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"bottom-b": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"main-top": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"main-bottom": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"sidebar-a": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		},
 		"sidebar-b": {
-			"panel": "uk-panel uk-panel-box"
+			"panel": "uk-card uk-card-default"
 		}
 	},
 	"tracking_code": "",

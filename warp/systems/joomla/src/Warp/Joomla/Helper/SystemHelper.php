@@ -15,7 +15,7 @@ use Joomla\CMS\Folder;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\File;
+use Joomla\CMS\Filesystem\File;
 
 /**
  * Joomla! system helper class, provides Joomla! CMS integration (http://www.joomla.org).

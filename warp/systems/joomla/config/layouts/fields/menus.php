@@ -1,4 +1,12 @@
-<p>Customize your menu appearance. To configure your menus, please visit the <a href="<?php echo JRoute::_('index.php?option=com_menus') ?>">menu settings</a> screen.</p>
+<?php
+
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Factory;
+
+?>
+
+<p>Customize your menu appearance. To configure your menus, please visit the <a href="<?php echo Route::_('index.php?option=com_menus') ?>">menu settings</a> screen.</p>
 
 <div id="menus">
 
@@ -11,9 +19,13 @@
     <hr class="uk-article-divider">
 
     <?php
-    $app = JApplicationCms::getInstance('site');
+    //$app = JApplicationCms::getInstance('site');
+    $app = Factory::getApplication();
+    $siteMenu = new \Joomla\CMS\Menu\SiteMenu;
+
     foreach ($menus as $menu) :
-        if (!$items = \JMenu::getInstance('site', array('app' => $app))->getItems(array('menutype', 'access', 'language'), array($menu->value, null, null))) continue;
+        //if (!$items = \JMenu::getInstance('site', array('app' => $app))->getItems(array('menutype', 'access', 'language'), array($menu->value, null, null))) continue;
+        if (!$items = $siteMenu->getItems( array('menutype', 'access', 'language'), array($menu->value, null, null) ) ) continue;
     ?>
     <table data-menu="<?php echo $menu->value ?>" class="uk-table uk-table-hover uk-table-middle tm-table">
         <thead>

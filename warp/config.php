@@ -38,6 +38,6 @@ return array(
         'subnav' => 'Warp\Menu\Subnav'
     ),
 
-    'branding' => 'Powered by <a href="http://www.yootheme.com">Warp Theme Framework</a>'
+    'branding' => 'Powered by <a href="http://www.yootheme.com">Warp Theme Framework</a>. Adjusted to PHP8.3 and J5 by <a href="https://saillingbyte.com.com">Sailing Byte</a>'
 
 );

@@ -11,13 +11,14 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.tooltip');
 
 $lang = Factory::getLanguage();
 $upper_limit = $lang->getUpperLimitSearchWord();
 ?>
-<form class="uk-form uk-margin-bottom" id="searchForm" action="<?php echo JRoute::_('index.php?option=com_search');?>" method="post">
+<form class="uk-form uk-margin-bottom" id="searchForm" action="<?php echo Route::_('index.php?option=com_search');?>" method="post">
 
 	<div class="uk-card uk-card-default">
 

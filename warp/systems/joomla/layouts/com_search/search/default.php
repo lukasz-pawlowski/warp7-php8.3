@@ -10,6 +10,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 
 // get application
 $app = Factory::getApplication();
@@ -35,7 +36,7 @@ if ($app->input->getWord('type', '') == 'json' && $app->input->getWord('tmpl', '
 			$item          = array();
 			$item['title'] = $result->title;
 			$item['text']  = substr_replace($text, '...', strrpos($text, ' '));
-			$item['url']   = JRoute::_($result->href, false);
+			$item['url']   = Route::_($result->href, false);
 			$res_items[]   = $item;
 		}
 	}

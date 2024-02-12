@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
@@ -75,7 +76,7 @@ if (!$this->items) {
             'article' => ($this->params->get('tag_list_show_item_description', 1)) ? HTMLHelper::_('string.truncate', $item->core_body, $this->params->get('tag_list_item_maximum_characters')) : '',
             'tags' => '',
             'edit' => '',
-            'url' => ($item->core_state != 0) ? JRoute::_(TagsHelperRoute::getItemRoute($item->content_item_id, $item->core_alias, $item->core_catid, $item->core_language, $item->type_alias, $item->router)) : '',
+            'url' => ($item->core_state != 0) ? Route::_(TagsHelperRoute::getItemRoute($item->content_item_id, $item->core_alias, $item->core_catid, $item->core_language, $item->type_alias, $item->router)) : '',
             'more' => '',
             'previous' => '',
             'next' => ''

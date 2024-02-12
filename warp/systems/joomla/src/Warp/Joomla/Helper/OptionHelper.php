@@ -10,7 +10,7 @@ namespace Warp\Joomla\Helper;
 
 use Warp\Warp;
 use Warp\Helper\AbstractHelper;
-use Joomla\CMS\File;
+use Joomla\CMS\Filesystem\File;
 
 /**
  * Option helper class, store option data.

@@ -10,12 +10,13 @@
 global $warp;
 
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 $id = implode('-', array('search', $module->id, uniqid()));
 
 ?>
 
-<form id="<?php echo $id; ?>" class="uk-search" action="<?php echo JRoute::_($route); ?>" method="get">
+<form id="<?php echo $id; ?>" class="uk-search" action="<?php echo Route::_($route); ?>" method="get">
 	<input class="uk-search-field" type="text" name="q" placeholder="<?php echo Text::_('TPL_WARP_SEARCH'); ?>" autocomplete="off">
 	<?php echo modFinderHelper::getGetFields($route, (int) $params->get('set_itemid')); ?>
 </form>

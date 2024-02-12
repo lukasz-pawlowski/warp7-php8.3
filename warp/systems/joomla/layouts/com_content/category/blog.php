@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
@@ -57,7 +58,7 @@ $app->input->set('layout', 'blog');
 						foreach ($this->category->tags->itemTags as $i => $tag) {
 							if (in_array($tag->access, JAccess::getAuthorisedViewLevels(Factory::getUser()->get('id')))) {
 								if($i > 0) echo ', ';
-								echo '<a href="'.JRoute::_(TagsHelperRoute::getTagRoute($tag->tag_id . ':' . $tag->alias)).'">'.$this->escape($tag->title).'</a>';
+								echo '<a href="'.Route::_(TagsHelperRoute::getTagRoute($tag->tag_id . ':' . $tag->alias)).'">'.$this->escape($tag->title).'</a>';
 							}
 						}
 						echo '</p>';
@@ -130,7 +131,7 @@ if ($articles) echo $articles;
 			<h3 class="uk-panel-title"><?php echo Text::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
 			<ul class="uk-list">
 				<?php foreach ($this->link_items as &$item) : ?>
-				<li><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid)); ?>"><?php echo $item->title; ?></a></li>
+				<li><a href="<?php echo Route::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid)); ?>"><?php echo $item->title; ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>

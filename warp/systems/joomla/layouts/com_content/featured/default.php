@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
@@ -69,7 +70,7 @@ if ($articles) echo $articles;
 <h3><?php echo Text::_('COM_CONTENT_MORE_ARTICLES'); ?></h3>
 <ul class="uk-list">
 	<?php foreach ($this->link_items as &$item) : ?>
-	<li><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug)); ?>"><?php echo $item->title; ?></a></li>
+	<li><a href="<?php echo Route::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug)); ?>"><?php echo $item->title; ?></a></li>
 	<?php endforeach; ?>
 </ul>
 <?php endif; ?>

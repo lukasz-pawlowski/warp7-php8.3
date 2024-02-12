@@ -12,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
 $app = Factory::getApplication();
 
@@ -50,7 +51,7 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 
 		<?php endif; ?>
 
-		<form class="uk-form" action="<?php echo JRoute::_('index.php', true); ?>" method="post">
+		<form class="uk-form" action="<?php echo Route::_('index.php', true); ?>" method="post">
 
 			<div class="uk-form-row">
 				<input class="uk-width-1-1" type="text" name="username" placeholder="<?php echo Text::_('JGLOBAL_USERNAME') ?>">

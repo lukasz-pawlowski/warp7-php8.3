@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 // Create a shortcut for params.
 $item 	 = $this->item;
@@ -22,7 +23,7 @@ $args    = include(__DIR__.'/../article_defaults.php');
 
 // template args
 $args = array_merge($args, array(
-	'permalink' => JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid), true, -1),
+	'permalink' => Route::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid), true, -1),
 	'image' => isset($images->image_intro) ? htmlspecialchars($images->image_intro) : '',
 	'image_alignment' => !isset($images->float_intro) || empty($images->float_intro) ? htmlspecialchars($params->get('float_intro')) : htmlspecialchars($images->float_intro),
 	'image_alt' => isset($images->image_intro_alt) ? htmlspecialchars($images->image_intro_alt) : '',
@@ -38,12 +39,12 @@ $args['edit'] .= $params->get('show_email_icon') ? HTMLHelper::_('icon.email', $
 
 // set url
 if ($params->get('access-view')) {
-	$link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
+	$link = Route::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
 } else {
 	$menu = Factory::getApplication()->getMenu();
 	$active = $menu->getActive();
 	$itemId = $active->id;
-	$link1 = JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
+	$link1 = Route::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
 	$returnURL = ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid);
 	$link = new Uri($link1);
 	$link->setVar('return', base64_encode($returnURL));

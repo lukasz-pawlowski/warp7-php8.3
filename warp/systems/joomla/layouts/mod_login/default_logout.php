@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('behavior.keepalive');
 
@@ -18,7 +19,7 @@ HTMLHelper::_('behavior.keepalive');
 
 <?php if ($type == 'logout') : ?>
 
-	<form class="uk-form" action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post">
+	<form class="uk-form" action="<?php echo Route::_('index.php', true, $params->get('usesecure')); ?>" method="post">
 
 		<?php if ($params->get('greeting')) : ?>
 		<div class="uk-form-row">

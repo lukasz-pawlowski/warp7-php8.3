@@ -12,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 // Activate the highlighter if enabled.
 if (!empty($this->query->highlight) && $this->params->get('highlight_terms', 1)) {
@@ -33,7 +34,7 @@ $app = Factory::getApplication();
 			$uri->setVar('q', $this->suggested);
 
 			// Compile the suggested query link.
-			$link	= '<a href="' . JRoute::_($uri->toString(array('path', 'query'))) . '">'
+			$link	= '<a href="' . Route::_($uri->toString(array('path', 'query'))) . '">'
 					. $this->escape($this->suggested)
 					. '</a>';
 

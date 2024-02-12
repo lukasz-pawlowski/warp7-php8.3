@@ -8,6 +8,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
+use Joomla\CMS\Router\Route;
 
 foreach ($this->results as $result) {
 
@@ -31,7 +32,7 @@ foreach ($this->results as $result) {
         'article' => $result->text,
         'tags' => '',
         'edit' => '',
-        'url' => ($result->href) ? JRoute::_($result->href) : '',
+        'url' => ($result->href) ? Route::_($result->href) : '',
         'more' => '',
         'previous' => '',
         'next' => ''
