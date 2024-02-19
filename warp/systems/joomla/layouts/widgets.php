@@ -28,7 +28,7 @@ foreach ($widgets as $index => $widget) {
 	$params['order']  = $index + 1;
 	$params['first']  = $params['order'] == 1;
 	$params['last']   = $params['order'] == $count;
-	$params['suffix'] = $widget->parameter->get('moduleclass_sfx', '');
+    $params['suffix'] = $widget->parameter->moduleclass_sfx ?? " ";
 
 	// pass through menu params
 	if ($widget->menu) {

@@ -9,6 +9,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Helper\ModuleHelper;
+
 ?>
 
 <?php if (count($list) > 0) : ?>
@@ -16,7 +18,7 @@ defined('_JEXEC') or die;
 		<?php for ($i = 0, $count = count($list); $i < $count; $i ++) : ?>
 		<?php $item = $list[$i]; ?>
 		<li class="uk-width-1-<?php echo $count ?>@m">
-			<?php require JModuleHelper::getLayoutPath('mod_articles_news', '_item'); ?>
+			<?php require ModuleHelper::getLayoutPath('mod_articles_news', '_item'); ?>
 		</li>
 		<?php endfor; ?>
 	</ul>

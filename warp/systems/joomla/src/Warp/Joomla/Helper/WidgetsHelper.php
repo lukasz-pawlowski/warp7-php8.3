@@ -12,7 +12,7 @@ use Warp\Warp;
 use Warp\Helper\AbstractHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-
+use Joomla\CMS\Helper\ModuleHelper;
 /**
  * Widget helper class, count/render widgets.
  */
@@ -82,14 +82,14 @@ class WidgetsHelper extends AbstractHelper
         if (!isset($this->loaded[$position])) {
 
     		// init vars
-    		$modules = \JModuleHelper::getModules($position);
+    		$modules = ModuleHelper::getModules($position);
 
             // set params, force no style
             $params = array('style'=>'none');
 
             // get modules content
             foreach ($modules as $module) {
-                $module->parameter = new \JRegistry($module->params);
+                $module->parameter = json_decode($module->params);
                 $module->menu = $module->module == 'mod_menu';
                 $module->content = $this->renderer->render($module, $params);
             }
